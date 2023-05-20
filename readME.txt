@@ -1,0 +1,8 @@
+
+
+
+COLOR PALETTE
+background = F5EBEB
+60 = E4D0D0
+30 = D5B4B4
+10 = 867070

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- include external CSS file -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome Back!</h1>
+      <p>Please sign in to your account</p>
+      <form action="/login" method="get">
+        <input type="text" id="username" placeholder="Username" name="Username" autocomplete="off" required>
+
+        <input type="password" id="password" placeholder= "Password" name="Password" required>
+        <p id="forgot">Forgot password?</p>
+
+        <button type="submit">Sign In</button>
+      </form>
+      <p id = 'noaccount'>Don't have an Account? <a href="/signup"><b>Sign Up</b></a></p>
+    </div>
+  </body>
+</html>
