@@ -130,3 +130,10 @@ button{
     margin-top: 65px;
 }
 
+#afterSignUp-container {
+    height: 100px;
+}
+
+#loginSuccess-container {
+    height: 100px;
+}
