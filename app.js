@@ -36,7 +36,7 @@ const userSchema = new Schema({
   });
 const User = mongoose.model('User', userSchema);
 // Collection Variable to perform actions on collection
-const collection = client.db("UserAuthenticationSystem").collection("Users");
+const collection = client.db("UserAuthenticationSystem").collection("users");
 
 // body parser use
 app.use(express.json())
@@ -54,21 +54,21 @@ app.get('/', (req, res) => {
 })
 
 // Login Page Setup
-app.get('/login', (req,res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    console.log(collection.findOne({username: username, password: password}));
-    async function fetchUser(users, passs){
-        const user = await collection.findOne({username: users});
-        console.log(user);
+app.post('/login', async (req,res) => {
+    const user = req.body.Username;
+    const pass = req.body.Password;
+    console.log(user)
+    try {
+        const check = await collection.findOne({username:user})
+        console.log(check)
+        if (check.password===pass){
+            res.render('loginSuccess')
+        }else{
+            res.render('loginFailure')
+        }
+    }catch {
+        res.render("loginFailure")
     }
-    fetchUser(username, password);
-
-    /*if (){
-        res.render('loginSuccess');
-    }else{
-        res.render('loginFailure');
-    };*/
 }) 
 
 // Signup Page Render
