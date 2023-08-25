@@ -57,10 +57,8 @@ app.get('/', (req, res) => {
 app.post('/login', async (req,res) => {
     const user = req.body.Username;
     const pass = req.body.Password;
-    console.log(user)
     try {
         const check = await collection.findOne({username:user})
-        console.log(check)
         if (check.password===pass){
             res.render('loginSuccess')
         }else{
