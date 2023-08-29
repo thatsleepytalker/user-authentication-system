@@ -85,6 +85,11 @@ app.post('/signup', (req, res) => {
     res.render('afterSignUp')
 })
 
+// Forgot Password Page Render
+app.get('/forgotpass', (req, res) => {
+    res.render('forgotPass')
+})
+
 // Starting Server, Listening to Port 
 app.listen(port, () => {
     console.log(`Listening on Port: ${port}`)
