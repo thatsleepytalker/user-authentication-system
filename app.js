@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
+const nodeMailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -45,6 +46,16 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
+// Node Mailer Setup
+var transporter = nodeMailer.createTransport({
+    port: 465,
+    host: "smtp.hostinger.com",
+    auth: {
+      user: 'noreply@curiouslydeveloping.in',
+      pass: process.env.PASSMAIL
+    }
+  });
+  
 
 // view engine set to EJS
 app.set('view engine', 'ejs')
@@ -88,6 +99,25 @@ app.post('/signup', (req, res) => {
 // Forgot Password Page Render
 app.get('/forgotpass', (req, res) => {
     res.render('forgotPass')
+})
+
+// Forgot Password Backend Setup
+app.post('/forgotpass', (req, res) => {
+    mail = req.body.Email;
+    var mailOptions = {
+        from: 'noreply@curiouslydeveloping.in',
+        to: mail,
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 })
 
 // Starting Server, Listening to Port 
